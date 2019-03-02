@@ -7,6 +7,15 @@ import iron.math.Vec4;
 import armory.trait.physics.PhysicsWorld;
 import armory.trait.physics.RigidBody;
 
+/**
+ * @file 	PlayerMovement.hx
+ * @brief	A trait that controls an object with the wasd keys using physics.
+ * @details
+ * 1. The object you attatch this to needs to be an active rigid body.
+ * 2. Any forward or backward motions will be force vectors that will be applied on the local y-axis (look).
+ * 3. rotations (a or d) will be rotations around the z-axis.
+ * 4. The Speed of rotation and value that scales the acceleration are the first two properties.
+ */
 
 class PlayerMovement extends iron.Trait {
 
@@ -15,6 +24,12 @@ class PlayerMovement extends iron.Trait {
 		super(); 
 	}
 #else
+	/// The rotation speed
+	var ROTATION_SPEED = .080;
+
+	/// Scalar for the forward acceleration
+	var ACCELERATION_SCALAR = 8.0;
+
 	/// Should the player accelerate forward
 	var forward:Bool = false;
 
@@ -32,12 +47,6 @@ class PlayerMovement extends iron.Trait {
 
 	/// Player Direction
 	var direction:Vec4 = new Vec4();
-
-	/// The rotation speed
-	var ROTATION_SPEED = .080;
-
-	/// Scalar for the forward acceleration
-	var ACCELERATION_SCALAR = 8;
 
 	public function new() {
 		super();
