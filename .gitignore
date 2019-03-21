@@ -3,3 +3,7 @@ game.blend1
 build_game/
 build/
 .vscode/
+
+# Backup documents
+*.~lock*
+*.swp

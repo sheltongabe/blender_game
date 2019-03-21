@@ -24,8 +24,8 @@ class PlayerMovement extends iron.Trait {
 		super(); 
 	}
 #else
-	/// The rotation speed
-	var ROTATION_SPEED = .080;
+	/// The rotation speed, read from properties
+	var rotation_speed = 0.0;
 
 	/// Scalar for the forward acceleration
 	var ACCELERATION_SCALAR = 8.0;
@@ -67,6 +67,9 @@ class PlayerMovement extends iron.Trait {
 		if(Input.occupied || !body.ready)
 			return;
 		
+		// Update rotation speed
+		rotation_speed = object.properties["rotation_speed"];
+		
 		// update booleans for if the player should move
 		var keyboard = Input.getKeyboard();
 		forward = keyboard.down('w');
@@ -89,10 +92,10 @@ class PlayerMovement extends iron.Trait {
 			direction.add(object.transform.look().mult(-1));
 
 		if(rotateCounterClockwise)
-			object.transform.rotate(Vec4.zAxis(), ROTATION_SPEED);
+			object.transform.rotate(Vec4.zAxis(), rotation_speed);
 
 		if(rotateClockwise)
-			object.transform.rotate(Vec4.zAxis(), -ROTATION_SPEED);
+			object.transform.rotate(Vec4.zAxis(), -rotation_speed);
 
 		// Apply the transformations
 		if(forward || backward) {
