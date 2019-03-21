@@ -14,17 +14,5 @@ package arm.node;
 	}
 
 	override public function add() {
-		var _OnKeyboard_003 = new armory.logicnode.OnKeyboardNode(this);
-		_OnKeyboard_003.property0 = "Down";
-		_OnKeyboard_003.property1 = "w";
-		_OnKeyboard_003.addOutputs([new armory.logicnode.NullNode(this)]);
-		var _OnKeyboard_001 = new armory.logicnode.OnKeyboardNode(this);
-		_OnKeyboard_001.property0 = "Down";
-		_OnKeyboard_001.property1 = "s";
-		_OnKeyboard_001.addOutputs([new armory.logicnode.NullNode(this)]);
-		var _OnKeyboard_002 = new armory.logicnode.OnKeyboardNode(this);
-		_OnKeyboard_002.property0 = "Down";
-		_OnKeyboard_002.property1 = "w";
-		_OnKeyboard_002.addOutputs([new armory.logicnode.NullNode(this)]);
 	}
 }

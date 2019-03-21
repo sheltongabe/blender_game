@@ -6,12 +6,14 @@ project.addLibrary("/home/dev/Downloads/Armory_06beta_linux64/Armory/armsdk/armo
 project.addLibrary("/home/dev/Downloads/Armory_06beta_linux64/Armory/armsdk/iron");
 project.addLibrary("/home/dev/Downloads/Armory_06beta_linux64/Armory/armsdk/lib/haxebullet");
 project.addAssets("/home/dev/Downloads/Armory_06beta_linux64/Armory/armsdk/lib/haxebullet/ammo/ammo.js", { notinlist: true });
-project.addParameter('armory.trait.physics.bullet.PhysicsWorld');
-project.addParameter("--macro keep('armory.trait.physics.bullet.PhysicsWorld')");
 project.addParameter('arm.PlayerMovement');
 project.addParameter("--macro keep('arm.PlayerMovement')");
+project.addParameter('arm.Electron');
+project.addParameter("--macro keep('arm.Electron')");
 project.addParameter('armory.trait.physics.bullet.RigidBody');
 project.addParameter("--macro keep('armory.trait.physics.bullet.RigidBody')");
+project.addParameter('armory.trait.physics.bullet.PhysicsWorld');
+project.addParameter("--macro keep('armory.trait.physics.bullet.PhysicsWorld')");
 project.addShaders("build_game/compiled/Shaders/*.glsl");
 project.addAssets("build_game/compiled/Assets/**", { notinlist: true });
 project.addAssets("build_game/compiled/Shaders/*.arm", { notinlist: true });
