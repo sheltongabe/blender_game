@@ -1,6 +1,8 @@
 package arm;
 
+import iron.Scene;
 import kha.math.Random;
+import iron.object.Object;
 import iron.object.LightObject;
 
 /**
@@ -13,7 +15,14 @@ import iron.object.LightObject;
 class Electron extends iron.Trait {
 
 	var strength = 0.0;
-	var deltaStrength = 0.1;
+	var deltaStrength = 1;
+	var electronLight:LightObject;
+
+	/// Index for the next light
+	public static var nextIndex:Int = 0;
+
+	/// Index for this Light
+	var index:Int = 0;
 
 	public function new() {
 		super();
@@ -26,14 +35,27 @@ class Electron extends iron.Trait {
 
 	/// Initialize any properties specific to general electrons
 	public function init() {
-
+		// Set the Index for this 
+		this.index = Electron.nextIndex;
+		Electron.nextIndex++;
+		
+		electronLight = Scene.active.getLight("electronLight_" + index);
 	}
 
 	/// Update the electrons by adjusting their light distance and radius
 	public function update() {
 		strength += deltaStrength;
-		(object).data.raw.strength = strength;
-		//var deltaDistance:Float = 
+		// electronLight.data.raw.strength = strength;
+
+		var dStrength:Float = this.randFloat(-object.properties["D_STRENGTH"], object.properties["D_STRENGTH"]);
+		electronLight.data.raw.strength = this.clamp(electronLight.data.raw.strength + dStrength,
+				object.properties["MIN_STRENGTH"], 
+				object.properties["MAX_STRENGTH"]);
+
+		var dDistance:Float = this.randFloat(-object.properties["D_DISTANCE"], object.properties["D_DISTANCE"]);
+		electronLight.data.raw.size = this.clamp(electronLight.data.raw.size + dDistance,
+				object.properties["MIN_DISTANCE"], 
+				object.properties["MAX_DISTANCE"]);
 	}
 
 	/// Do Any removal tasks
@@ -50,5 +72,10 @@ class Electron extends iron.Trait {
 			value = min;
 		}
 		return value;
+	}
+
+	/// Return a random float in the provided range
+	public function randFloat(min:Float, max:Float):Float {
+		return min + (Math.random() * (max - min));
 	}
 }
