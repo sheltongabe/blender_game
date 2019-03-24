@@ -13,8 +13,8 @@ class Main {
             false,
             true,
             false,
-            1960,
-            1280,
+            999,
+            652,
             1,
             true,
             armory.renderpath.RenderPathCreator.get
