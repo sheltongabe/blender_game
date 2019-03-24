@@ -39,7 +39,11 @@ class Electron extends iron.Trait {
 		this.index = Electron.nextIndex;
 		Electron.nextIndex++;
 		
+		// Grab the light
 		electronLight = Scene.active.getLight("electronLight_" + index);
+
+		// Set the position 0.25m above the floor
+		object.transform.translate(0, 0, .25);
 	}
 
 	/// Update the electrons by adjusting their light distance and radius
