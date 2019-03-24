@@ -2,9 +2,6 @@ package arm;
 
 import arm.base.ElectronBase;
 
-import iron.Scene;
-import kha.math.Random;
-import iron.object.Object;
 import iron.object.LightObject;
 
 /**
@@ -23,7 +20,7 @@ class Electron extends iron.Trait {
 
 	public function new() {
 		super();
-		
+
 		// Register functions
 		notifyOnInit(init);
 		notifyOnUpdate(update);
