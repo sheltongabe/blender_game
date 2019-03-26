@@ -72,8 +72,10 @@ class PlayerElectron extends Electron {
 
 		// Move the position and the children
 		object.transform.loc.add(velocity);
-		for(child in object.children)
+		for(child in object.children) {
 			child.transform.loc.add(velocity);
+			child.transform.buildMatrix();
+		}
 	}
 	
 	/// Remove PlayerElectron
