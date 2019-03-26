@@ -1,5 +1,6 @@
 package arm;
 
+import iron.math.Vec4;
 import arm.base.ElectronBase;
 
 import iron.object.LightObject;
@@ -42,5 +43,15 @@ class Electron extends iron.Trait {
 	/// Do Any removal tasks
 	public function destroy() {
 		// nought
+	}
+	
+	/// Move the Electron to a set of coordinates
+	public function move(x:Float, y:Float, z:Float) {
+		// Move this object
+		object.transform.loc = new Vec4(x, y, z);
+
+		// Move children objects
+		for(child in object.children)
+			child.transform.loc = new Vec4(x, y, z);
 	}
 }
