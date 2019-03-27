@@ -1,12 +1,12 @@
 
 # Dedication
 
-Author: Mitch Featherston
+Author: hc
 
 ## URL
 
-URL: [opengameart.org](https://opengameart.org/content/100-seamless-textures?page=2)
+URL: [opengameart.org](https://opengameart.org/content/galaxy-skybox)
 
 #### License
 
-License: Public Domain (CCO)
+License: Public Domain (CC)
