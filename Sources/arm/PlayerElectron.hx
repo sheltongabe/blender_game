@@ -4,6 +4,7 @@ import arm.Electron;
 import arm.base.PlayerControl;
 
 import iron.math.Vec4;
+import armory.trait.physics.RigidBody;
 
 /**
  * @class 	PlayerElectron
@@ -72,8 +73,14 @@ class PlayerElectron extends Electron {
 
 		// Move the position and the children
 		object.transform.loc.add(velocity);
-		for(child in object.children)
+		for(child in object.children) {
 			child.transform.loc.add(velocity);
+			// Sync Matrices
+			var body:RigidBody = child.getTrait(RigidBody);
+			child.transform.buildMatrix();
+			if(body != null)
+				body.syncTransform();
+		}
 	}
 	
 	/// Remove PlayerElectron
@@ -102,6 +109,11 @@ class PlayerElectron extends Electron {
 			accel.z = 0;
 			vel.z = 0;
 		}
+	}
+
+	/// Return a copy of the velocity
+	public function getVelocity():Vec4 {
+		return this.velocity.clone();
 	}
 
 	/// Compare two floats for equality
