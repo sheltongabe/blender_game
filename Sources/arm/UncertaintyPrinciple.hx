@@ -1,8 +1,11 @@
 package arm;
 
+import js.Function;
+import armory.trait.physics.PhysicsWorld;
 import arm.PlayerElectron;
 
 import iron.math.Vec4;
+import armory.trait.physics.RigidBody;
 
 /**
  * @class	UncertaintyPrinciple
@@ -37,6 +40,29 @@ class UncertaintyPrinciple extends iron.Trait {
 
 		// Update the scale of the sphere accordingly
 		object.transform.scale = new Vec4(diameter, diameter, diameter);
+
+		this.updateGluonStrength();
+	}
+
+	/// Handle collisions with the walls
+	public function updateGluonStrength() {
+		var physics:PhysicsWorld = PhysicsWorld.active;
+		var sphereBody:RigidBody = object.getTrait(RigidBody);
+		if(!sphereBody.ready) return;
+
+		// Get the objects in contact with you
+		var contacts:Array<RigidBody> = physics.getContacts(sphereBody);
+		if(contacts == null)
+			return;
+		
+		// For each contact lower from the Gluon Field Strength
+		for(contact in contacts) {
+			if(contact.object.name.split('.')[0] == "Wall-Template") {
+				object.parent.properties["gluonFieldStrength"] -= object.properties["DAMAGE"];
+			}
+			else 
+				trace(contact.object.name.substr(0, 13));
+		}
 	}
 
 	/// Any removal tasks
